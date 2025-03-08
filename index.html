@@ -556,6 +556,11 @@
             const root = document.documentElement;
             let isDarkMode = localStorage.getItem('theme') === 'light' ? false : true;
 
+            // Set initial theme based on localStorage
+            if (!isDarkMode) {
+                root.classList.add('light-mode');
+            }
+
             themeToggle.addEventListener('click', () => {
                 isDarkMode = !isDarkMode;
                 if (isDarkMode) {
