@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddharth's Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        /* Dark mode (default) */
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #4a5568;
+            --accent-1: #d8b4fe;
+            --accent-2: #93c5fd;
+            --text-primary: #93c5fe;
+            --text-secondary: #EBE8E2;
+        }
+
+        /* Light mode class */
+        :root.light-mode {
+            --primary: #f2f5f8;
+            --secondary: #e8eef1;
+            --accent-1: #8b5cf6;
+            --accent-2: #3b82f6;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+            transition: all 0.5s ease;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            opacity: 0.85;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 4rem;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            transition: all 0.5s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-link {
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 1px;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link.active::before {
+            width: 100%;
+            background-color: var(--accent-1);
+        }
+
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 70vh;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent-1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.8s;
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 1.1s;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(248, 247, 247, 0.1);
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .features-section {
+            padding: 6rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            background-color: var(--secondary);
+            clip-path: polygon(0 8%, 100% 0, 100% 92%, 0 100%);
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+            transition: background-color 0.5s ease;
+        }
+
+        .feature-card {
+            background-color: var(--primary);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-1);
+            transition: color 0.5s ease;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: color 0.5s ease;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            transition: color 0.5s ease;
+        }
+
+        .footer {
+            padding: 4rem;
+            text-align: center;
+            color: var(--text-secondary);
+            transition: color 0.5s ease;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary);
+            color: var(--text-primary);
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .social-link::after {
+            position: absolute;
+            visibility: hidden;
+            opacity: 0;
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-link:hover::after {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-1);
+            color: white;
+        }
+
+        .social-link:nth-child(1)::after {
+            content: "GitHub";
+        }
+        
+        .social-link:nth-child(2)::after {
+            content: "LinkedIn";
+        }
+        
+        .social-link:nth-child(3)::after {
+            content: "LeetCode";
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating architecture elements animation */
+        .floating-element {
+            position: absolute;
+            border-radius: 10px;
+            pointer-events: none;
+            opacity: 0.6;
+            z-index: -1;
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+
+        .element-1 {
+            width: 80px;
+            height: 80px;
+            background-color: var(--accent-1);
+            top: 20%;
+            left: 10%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .element-2 {
+            width: 120px;
+            height: 40px;
+            background-color: var(--accent-2);
+            top: 40%;
+            right: 15%;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        .element-3 {
+            width: 60px;
+            height: 150px;
+            background-color: var(--accent-1);
+            bottom: 20%;
+            left: 20%;
+            animation: float 18s infinite ease-in-out 2s;
+        }
+
+        .element-4 {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--accent-2);
+            background-color: transparent;
+            bottom: 30%;
+            right: 20%;
+            animation: float 22s infinite ease-in-out 1s;
+        }
+
+        /* Batman Logo Theme Toggle */
+        .batman-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.5s ease;
+        }
+
+        .batman-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .batman-logo {
+            width: 40px;
+            height: 40px;
+            fill: var(--text-primary);
+            transition: fill 0.5s ease;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(-20px, 10px) rotate(5deg);
+            }
+            50% {
+                transform: translate(10px, -15px) rotate(-5deg);
+            }
+            75% {
+                transform: translate(-15px, -10px) rotate(3deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1.5rem 2rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .features-section {
+                padding: 6rem 2rem;
+                grid-template-columns: 1fr;
+            }
+
+            .batman-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .batman-logo {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="logo">PORTFOLIO</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="templates/about.html" class="nav-link">About me</a>
+                <a href="templates/projects.html" class="nav-link">Projects</a>
+                <a href="templates/contact.html" class="nav-link">Contact</a>
+            </div>
+        </nav>
+
+        <section class="hero-section">
+            <h1 class="hero-title">SIDDHARTH</h1>
+            <p class="hero-subtitle">Engineering student from India, passionate about AI/ML, data, and cloud tech.</p>
+            <button class="cta-button" onclick="window.open('templates/projects.html', '_blank');"><span>Explore Projects</span></button>
+        </section>
+
+        <section class="features-section">
+            <div class="feature-card">
+                <div class="feature-icon">◼</div>
+                <h3 class="feature-title">Data Scientist</h3>
+                <p class="feature-description">Developed and deployed ML models, cleaned and transformed large datasets, performed feature engineering, and applied statistical analysis to uncover trends. Delivered actionable insights to support data-driven decision-making and improve business outcomes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">◆</div>
+                <h3 class="feature-title">Data Engineer</h3>
+                <p class="feature-description">Designed and implemented robust data pipelines, optimized data storage solutions, and integrated data from various sources. Ensured data quality, scalability, and performance to support seamless analysis and reporting.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">◯</div>
+                <h3 class="feature-title">Cloud Engineer</h3>
+                <p class="feature-description">Designed, deployed, and managed scalable cloud infrastructure, optimizing cost and performance. Automated workflows, ensured system reliability, and integrated cloud services to support seamless operations and improve business agility.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">◼</div>
+                <h3 class="feature-title">Prompt Engineer</h3>
+                <p class="feature-description">Designed and developed a fully functional website using advanced prompt engineering techniques, leveraging AI tools to automate content generation, code creation, and design. Optimized prompts for efficiency and customization, ensuring a user-centric, high-quality web experience while streamlining development workflows.</p>
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            <div class="social-links">
+                <a href="https://github.com/SiddharthCh7" class="social-link" target="_blank">❖</a>
+                <a href="https://linkedin.com/in/siddharth-ch05/" class="social-link" target="_blank">❙❙</a>
+                <a href="https://leetcode.com/u/Siddharth_070504/" class="social-link" target="_blank">◩</a>
+            </div>
+            <p>© 2025 Siddharth. All rights reserved.</p>
+        </footer>
+
+        <!-- Floating architectural elements -->
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
+        <div class="floating-element element-4"></div>
+    </div>
+
+    <!-- Batman Logo Theme Toggle Button -->
+    <div class="batman-toggle" id="themeToggle">
+        <svg class="batman-logo" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
+            <path d="M250,5c0,0-175,5-175,100c0,0,0,25,50,75c0,0,25,50,125,50c0,0,100,0,125-50c0,0,50-50,50-75C425,10,250,5,250,5z M175,100c0,0-40,0-25,25c0,0,25,50,25,75c0,0-125-75-100-100c0,0,25-25,100,0M325,100c0,0,40,0,25,25c0,0-25,50-25,75c0,0,125-75,100-100c0,0-25-25-100,0M100,75c0,0,100,50,150,125c0,0,50-75,150-125c0,0-75-25-150-25C175,50,100,75,100,75z"/>
+        </svg>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const root = document.documentElement;
+            let isDarkMode = localStorage.getItem('theme') === 'light' ? false : true;
+
+            // Set initial theme based on localStorage
+            if (!isDarkMode) {
+                root.classList.add('light-mode');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                isDarkMode = !isDarkMode;
+                if (isDarkMode) {
+                    root.classList.remove('light-mode');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    root.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                }
+                updateThreeJSColors();
+            });
+
+            // Three.js setup
+            const container = document.getElementById('canvas-container');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+            
+            camera.position.z = 5;
+            
+            // Create architectural grid
+            const gridSize = 20;
+            const gridDivisions = 10;
+            const gridHelper = new THREE.GridHelper(gridSize, gridDivisions, 0xd8b4fe, 0x93c5fd);
+            gridHelper.rotation.x = Math.PI / 2;
+            gridHelper.position.z = -5;
+            scene.add(gridHelper);
+            
+            // Create abstract architectural elements
+            const geometry = new THREE.BoxGeometry(1, 1, 1);
+            const material = new THREE.MeshBasicMaterial({ 
+                color: 0xd8b4fe, 
+                wireframe: true,
+                transparent: true,
+                opacity: 0.7
+            });
+            
+            const cubes = [];
+            for (let i = 0; i < 20; i++) {
+                const cube = new THREE.Mesh(geometry, material);
+                cube.position.x = (Math.random() - 0.5) * 10;
+                cube.position.y = (Math.random() - 0.5) * 10;
+                cube.position.z = (Math.random() - 0.5) * 5 - 3;
+                cube.rotation.x = Math.random() * Math.PI;
+                cube.rotation.y = Math.random() * Math.PI;
+                cube.scale.set(
+                    Math.random() * 1.5 + 0.5,
+                    Math.random() * 1.5 + 0.5,
+                    Math.random() * 1.5 + 0.5
+                );
+                scene.add(cube);
+                cubes.push({
+                    mesh: cube,
+                    rotationSpeed: {
+                        x: (Math.random() - 0.5) * 0.01,
+                        y: (Math.random() - 0.5) * 0.01
+                    },
+                    initialPosition: {
+                        x: cube.position.x,
+                        y: cube.position.y,
+                        z: cube.position.z
+                    }
+                });
+            }
+            
+            // Function to update ThreeJS colors based on theme
+            function updateThreeJSColors() {
+                const darkColor = 0xd8b4fe;
+                const lightColor = 0x8b5cf6;
+                
+                const currentColor = isDarkMode ? darkColor : lightColor;
+                
+                // Update grid helper colors
+                gridHelper.material.color.set(isDarkMode ? 0xd8b4fe : 0x8b5cf6);
+                
+                // Update cube materials
+                cubes.forEach(cube => {
+                    cube.mesh.material.color.set(currentColor);
+                });
+            }
+            
+            // Handle mouse movement
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Move camera slightly based on mouse position
+                camera.position.x = mouseX * 0.5;
+                camera.position.y = mouseY * 0.5;
+                camera.lookAt(0, 0, -3);
+                
+                // Animate cubes
+                cubes.forEach((cube, index) => {
+                    cube.mesh.rotation.x += cube.rotationSpeed.x;
+                    cube.mesh.rotation.y += cube.rotationSpeed.y;
+                    
+                    // Add subtle movement based on time
+                    const time = Date.now() * 0.001;
+                    cube.mesh.position.x = cube.initialPosition.x + Math.sin(time + index) * 0.2;
+                    cube.mesh.position.y = cube.initialPosition.y + Math.cos(time + index * 0.5) * 0.2;
+                    
+                    // Add subtle response to mouse
+                    cube.mesh.position.x += mouseX * 0.02;
+                    cube.mesh.position.y += mouseY * 0.02;
+                });
+                
+                // Rotate grid slightly
+                gridHelper.rotation.z += 0.001;
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // Interactive feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px) scale(1.02)';
+                    card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
