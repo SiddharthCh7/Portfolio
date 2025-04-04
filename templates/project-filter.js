@@ -172,12 +172,12 @@ function initModal() {
                 "Simple API interface for easy integration with existing systems",
                 "Streaming responses for better user experience"
             ],
-            gallery: [
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300"
-            ],
+            // gallery: [
+            //     "/api/placeholder/400/300",
+            //     "/api/placeholder/400/300",
+            //     "/api/placeholder/400/300",
+            //     "/api/placeholder/400/300"
+            // ],
             github: "https://github.com/SiddharthCh7/",
             demo: "#"
         },
@@ -217,12 +217,12 @@ function initModal() {
                 "Model Choice: Chose RandomForestClassifier for better performance in capturing non-linear relationships in the data.",
                 "Batch Processing: Performed batch processing to preprocess the data, reducing the overhead on the CPU and improving memory efficiency.",
             ],
-            gallery: [
-                "F:\LPU\batch_processing_time.png",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300"
-            ],
+            // gallery: [
+            //     "F:\LPU\batch_processing_time.png",
+            //     "/api/placeholder/400/300",
+            //     "/api/placeholder/400/300",
+            //     "/api/placeholder/400/300"
+            // ],
             github: "https://github.com/SiddharthCh7/Hate-Speech-Classification-using-Polars",
             demo: "#"
         },
