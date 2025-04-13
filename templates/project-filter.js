@@ -172,38 +172,38 @@ function initModal() {
                 "Simple API interface for easy integration with existing systems",
                 "Streaming responses for better user experience"
             ],
-            // gallery: [
-            //     "/api/placeholder/400/300",
-            //     "/api/placeholder/400/300",
-            //     "/api/placeholder/400/300",
-            //     "/api/placeholder/400/300"
-            // ],
+            gallery: [
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300"
+            ],
             github: "https://github.com/SiddharthCh7/",
-            demo: "#"
+            demo: "https://linkedout-a6rv.onrender.com/"
         },
-        // project2: {
-        //     title: "Real-time ETL Pipeline",
-        //     image: "/api/placeholder/800/500",
-        //     duration: "3 months (Sep 2023 - Dec 2023)",
-        //     team: "Team of 3",
-        //     description: "This enterprise-grade ETL pipeline processes real-time data from multiple sources including IoT devices, web applications, and third-party APIs. Using Azure Data Factory for orchestration and Databricks for transformation, the system handles data validation, cleaning, and normalization before loading into both data warehouse and data lake environments.",
-        //     features: [
-        //         "Event-driven architecture with Azure Event Hubs for real-time ingestion",
-        //         "Auto-scaling compute resources based on data volume",
-        //         "Comprehensive data quality checks and error handling",
-        //         "Delta Lake implementation for ACID transactions on data lake",
-        //         "Monitoring dashboard with alerting for pipeline health",
-        //         "CI/CD integration for automated testing and deployment"
-        //     ],
-        //     gallery: [
-        //         "/api/placeholder/400/300",
-        //         "/api/placeholder/400/300",
-        //         "/api/placeholder/400/300",
-        //         "/api/placeholder/400/300"
-        //     ],
-        //     github: "https://github.com/SiddharthCh7/",
-        //     demo: "#"
-        // },
+        project2: {
+            title: "AI Resume Enhancer",
+            image: "/api/placeholder/800/500",
+            duration: "1 month",
+            team: "Solo Project",
+            description: "This is an AI-powered resume enhancer which takes a resume as input and provide improvments that can be made in the resume, along with the improved resume",
+            features: [
+                "AI-powered",
+                "Auto-scaling compute resources based on data volume",
+                "Comprehensive data quality checks and error handling",
+                "Delta Lake implementation for ACID transactions on data lake",
+                "Monitoring dashboard with alerting for pipeline health",
+                "CI/CD integration for automated testing and deployment"
+            ],
+            gallery: [
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300"
+            ],
+            github: "https://github.com/SiddharthCh7/Resume-Enhancer",
+            demo: "https://resume-enhancer-w9yb.onrender.com/"
+        },
         project3: {
             title: "Hate Speech Classification",
             image: "/api/placeholder/800/500",
@@ -217,38 +217,15 @@ function initModal() {
                 "Model Choice: Chose RandomForestClassifier for better performance in capturing non-linear relationships in the data.",
                 "Batch Processing: Performed batch processing to preprocess the data, reducing the overhead on the CPU and improving memory efficiency.",
             ],
-            // gallery: [
-            //     "F:\LPU\batch_processing_time.png",
-            //     "/api/placeholder/400/300",
-            //     "/api/placeholder/400/300",
-            //     "/api/placeholder/400/300"
-            // ],
+            gallery: [
+                "F:\LPU\batch_processing_time.png",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300",
+                "/api/placeholder/400/300"
+            ],
             github: "https://github.com/SiddharthCh7/Hate-Speech-Classification-using-Polars",
-            demo: "#"
+            demo: "https://resume-enhancer-w9yb.onrender.com/"
         },
-        // project4: {
-        //     title: "Interactive Analytics Dashboard",
-        //     image: "/api/placeholder/800/500",
-        //     duration: "6 weeks (Jun 2023 - Aug 2023)",
-        //     team: "Team of 2",
-        //     description: "This interactive dashboard visualizes complex business metrics and KPIs in an intuitive interface. Built with Flask on the backend and D3.js for visualizations, it connects to multiple data sources and provides real-time insights. The system includes automated reporting features and advanced filtering capabilities.",
-        //     features: [
-        //         "15+ interactive visualization types including heatmaps, network graphs, and time series",
-        //         "User-customizable dashboard layouts with drag-and-drop interface",
-        //         "Role-based access control for enterprise security",
-        //         "Scheduled report generation with email distribution",
-        //         "Data export in multiple formats (Excel, CSV, PDF)",
-        //         "Responsive design for desktop and mobile devices"
-        //     ],
-        //     gallery: [
-        //         "/api/placeholder/400/300",
-        //         "/api/placeholder/400/300",
-        //         "/api/placeholder/400/300",
-        //         "/api/placeholder/400/300"
-        //     ],
-        //     github: "https://github.com/SiddharthCh7/",
-        //     demo: "#"
-        // }
     };
     
     // Get modal elements
