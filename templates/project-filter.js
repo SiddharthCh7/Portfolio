@@ -173,10 +173,10 @@ function initModal() {
                 "Streaming responses for better user experience"
             ],
             gallery: [
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300"
+                // "/api/placeholder/400/300",
+                // "/api/placeholder/400/300",
+                // "/api/placeholder/400/300",
+                // "/api/placeholder/400/300"
             ],
             github: "https://github.com/SiddharthCh7/",
             demo: "https://linkedout-a6rv.onrender.com/"
@@ -196,10 +196,10 @@ function initModal() {
                 "CI/CD integration for automated testing and deployment"
             ],
             gallery: [
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300"
+                // "/api/placeholder/400/300",
+                // "/api/placeholder/400/300",
+                // "/api/placeholder/400/300",
+                // "/api/placeholder/400/300"
             ],
             github: "https://github.com/SiddharthCh7/Resume-Enhancer",
             demo: "https://resume-enhancer-w9yb.onrender.com/"
@@ -218,10 +218,10 @@ function initModal() {
                 "Batch Processing: Performed batch processing to preprocess the data, reducing the overhead on the CPU and improving memory efficiency.",
             ],
             gallery: [
-                "F:\LPU\batch_processing_time.png",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300",
-                "/api/placeholder/400/300"
+                "../media/bpt.png",
+                // "/api/placeholder/400/300",
+                // "/api/placeholder/400/300",
+                // "/api/placeholder/400/300"
             ],
             github: "https://github.com/SiddharthCh7/Hate-Speech-Classification-using-Polars",
             demo: "https://resume-enhancer-w9yb.onrender.com/"

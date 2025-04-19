@@ -505,7 +505,7 @@
         <section class="hero-section">
             <h1 class="hero-title">SIDDHARTH</h1>
             <p class="hero-subtitle">Engineering student from India, passionate about AI/ML, data, and cloud tech.</p>
-            <button class="cta-button" onclick="window.open('templates/projects.html', '_blank');"><span>Explore Projects</span></button>
+            <button class="cta-button" onclick="downloadResume()"><span>Resume</span></button>
         </section>
 
         <section class="features-section">
@@ -556,6 +556,15 @@
     </div>
 
     <script>
+        function downloadResume() {
+            const link = document.createElement('a');
+            link.href = 'media/Resume.pdf';
+            link.download = 'Siddharth_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             // Theme Toggle
             const themeToggle = document.getElementById('themeToggle');
