@@ -224,7 +224,7 @@ function initModal() {
                 // "/api/placeholder/400/300"
             ],
             github: "https://github.com/SiddharthCh7/Hate-Speech-Classification-using-Polars",
-            demo: "https://resume-enhancer-w9yb.onrender.com/"
+            demo: "#"
         },
     };
     
