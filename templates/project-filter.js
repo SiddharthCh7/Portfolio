@@ -178,7 +178,7 @@ function initModal() {
                 // "/api/placeholder/400/300",
                 // "/api/placeholder/400/300"
             ],
-            github: "https://github.com/SiddharthCh7/",
+            github: "https://github.com/SiddharthCh7/LinkedIn-Post-Automation-Tool",
             demo: "https://linkedout-a6rv.onrender.com/"
         },
         project2: {
