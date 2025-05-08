@@ -226,6 +226,31 @@ function initModal() {
             github: "https://github.com/SiddharthCh7/Hate-Speech-Classification-using-Polars",
             demo: "#"
         },
+        // Project 4
+        project3: {
+            title: "Dynamic ELT Pipeline",
+            image: "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline/blob/collab/snapshots/Success.png",
+            duration: "1 week (Mar 2025)",
+            team: "Solo project",
+            description: "Designed and implemented a fully dynamic data ingestion pipeline in Azure Data Factory (ADF) to automate data extraction from RESTful APIs with parameterized endpoints. Leveraged ADF's dynamic content capabilities and parameterization features to build a reusable and scalable pipeline architecture. This setup enables on-the-fly modification of API parameters—such as resource identifiers—without altering the pipeline logic or structure. Integrated Azure Key Vault for secure handling of API credentials and configured the pipeline to store raw and processed data in Azure Blob Storage. This dynamic approach significantly improved operational efficiency, reduced maintenance overhead, and enabled seamless integration of new API endpoints with minimal development effort.",
+            features : [
+                "Dynamic Parameterization: Implemented dynamic parameter handling in Azure Data Factory, enabling API endpoint customization without modifying pipeline logic.",
+                "Scalability: Designed the pipeline to easily adapt to new data sources or endpoints, supporting seamless scaling for future API integrations.",
+                "Automation: Fully automated the data extraction and ingestion workflow, minimizing manual intervention and improving overall efficiency.",
+                "Secure Credential Management: Integrated Azure Key Vault to securely manage and retrieve API keys and secrets during pipeline execution.",
+                "Efficient Storage: Configured the pipeline to store both raw and processed data in Azure Blob Storage, ensuring organized and cost-effective data archival.",
+                "Low Maintenance: Replaced hard-coded values with dynamic expressions and parameterized datasets, reducing long-term maintenance overhead.",
+                "Resilience: Added error handling and retry mechanisms within pipeline activities to ensure robust data extraction even under intermittent API failures.",
+            ],            
+            gallery: [
+                "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline/blob/collab/snapshots/source.png",
+                "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline/blob/collab/snapshots/sink.png",
+                "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline/blob/collab/snapshots/Success.png",
+                "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline/blob/collab/snapshots/dashboard.png"
+            ],
+            github: "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline",
+            demo: "#"
+        },
     };
     
     // Get modal elements
