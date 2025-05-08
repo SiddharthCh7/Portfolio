@@ -227,7 +227,7 @@ function initModal() {
             demo: "#"
         },
         // Project 4
-        project3: {
+        project4: {
             title: "Dynamic ELT Pipeline",
             image: "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline/blob/collab/snapshots/Success.png",
             duration: "1 week (Mar 2025)",
