@@ -251,6 +251,34 @@ function initModal() {
             github: "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline",
             demo: "#"
         },
+
+        // Project 5
+        project5: {
+            title: "End-to-End ML Pipeline",
+            image: "https://github.com/SiddharthCh7/Azure-Ipl-Pipeline/blob/collab/snapshots/Success.png",
+            duration: "1 month",
+            team: "Solo project",
+            description: "Built a modular ELT+ML pipeline to process 1M+ text records using Azure Blob Storage, PySpark (Databricks), and Hugging Face Transformers.",
+            features : [
+                "Scalability: Designed with a Data Lakehouse architecture enabling scalable data ingestion, transformation, and storage using Azure Blob Storage and Databricks Spark.",
+                "Multilingual Support: Supports fine-tuning Seq2Seq models like T5 and mBART, with configurations for handling multiple languages (though currently tested on a single language).",
+                "Efficiency: Training scripts that are compatible with both GPU and CPU environments and use efficient libraries such as Hugging Face Datasets, Transformers, and Accelerate.",
+                "Reproducibility: The entire pipeline including data ingestion, transformation, model training, and logging is encapsulated within a Docker container for portable and reproducible execution.",
+                "Data Ingestion: Automated data ingestion from Hugging Face datasets API, storing raw data in Azure Blob Storage (Bronze layer) for traceability and reusability.",
+                "Data Transformation: Uses PySpark on Databricks to clean, tokenize, and transform raw data, storing processed data in the Silver layer of Azure Blob Storage to ensure consistent downstream usage.",
+                "Model Training: Utilizes Hugging Face's Trainer API for fine-tuning, supporting both CPU and GPU environments with flexible dataset loading.",
+                "Experiment Tracking: Integrates MLflow to log parameters, metrics, and artifacts with a centralized dashboard for comparing runs and managing model versions.",
+                "Containerization: Docker encapsulates the entire workflow, defining dependencies and ensuring environment portability across local, cloud, and CI/CD setups.",
+            ],            
+            gallery: [
+                "https://github.com/SiddharthCh7/Seq2Seq-FineTuning/blob/main/media/flowchart.png",
+                "https://github.com/SiddharthCh7/Seq2Seq-FineTuning/blob/main/media/Docker-container.png",
+                "https://github.com/SiddharthCh7/Seq2Seq-FineTuning/blob/main/media/mlflow-model-versions.png",
+                
+            ],
+            github: "https://github.com/SiddharthCh7/Seq2Seq-FineTuning",
+            demo: "#"
+        },
     };
     
     // Get modal elements
