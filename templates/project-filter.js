@@ -279,6 +279,33 @@ function initModal() {
             github: "https://github.com/SiddharthCh7/Seq2Seq-FineTuning",
             demo: "#"
         },
+
+        // Project: 6
+        project6: {
+            title: "Spotify-Style Music Backend",
+            image: "",  
+            duration: "3 weeks",
+            team: "Solo project",
+            description: "A scalable Node.js backend inspired by Spotify, offering APIs for song search, playlists, secure streaming, and user management. Built for seamless integration with modern music UIs.",
+            features: [
+                "Scalable Architecture: Clean, modular API design using Express.js with structured routing, controllers, and middleware for maintainability.",
+                "Efficient Data Layer: Uses MongoDB to store song, album, and playlist metadata, optimized for fast search and filtering.",
+                "Media Storage: Stores audio files in AWS S3 for reliable and cost-efficient media delivery at scale.",
+                "Secure Streaming: Generates time-limited signed URLs, preventing direct S3 access and ensuring controlled media playback.",
+                "Playlist Management: Supports playlist creation, update, deletion, and track operations with proper user authorization.",
+                "User Authentication: Includes JWT-based auth for secure access to protected music and playlist endpoints.",
+                "Frontend Integration: Built to integrate smoothly with the React + Vite frontend UI for real-time music interactions.",
+                "Deployment Ready: Supports production deployment through Docker or cloud platforms with environment-based configuration."
+            ],
+            gallery: [
+                // "https://raw.githubusercontent.com/SiddharthCh7/Spotify-backend/main/snapshots/api-flow.png",
+                // "https://raw.githubusercontent.com/SiddharthCh7/Spotify-backend/main/snapshots/s3-architecture.png",
+                // "https://raw.githubusercontent.com/SiddharthCh7/Spotify-backend/main/snapshots/playlist-endpoints.png"
+            ],
+            github: "https://github.com/SiddharthCh7/Spotify-backend",
+            demo: "https://spotify-frontend-pied.vercel.app/"
+        },
+
     };
     
     // Get modal elements
